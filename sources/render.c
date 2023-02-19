@@ -6,7 +6,7 @@
 /*   By: troudot <troudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 04:44:05 by troudot           #+#    #+#             */
-/*   Updated: 2023/02/18 04:55:41 by troudot          ###   ########.fr       */
+/*   Updated: 2023/02/19 15:48:34 by troudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static void	ft_menu(t_f *f)
 		0xFFFFFF, "Zoom          : SCROLL");
 	mlx_string_put(f->mlx->mlx, f->mlx->win, 15, y += 20,
 		0xFFFFFF, "Move          : WASD");
-	mlx_string_put(f->mlx->mlx, f->mlx->win, 15, y += 20,
-		0xFFFFFF, "Color         : C");
 	mlx_string_put(f->mlx->mlx, f->mlx->win, 15, y += 20,
 		0xFFFFFF, "Reset         : R");
 	if (ft_strcmp_lower(f->set, "julia") == 0)
@@ -59,10 +57,10 @@ void	render(t_f *f)
 {
 	ft_bzero(f->mlx->data_addr, WIDTH * HEIGHT * (f->mlx->bits_per_pixel / 8));
 	f->y = -1;
-	while (++f->y < HEIGHT + f->move_y)
+	while (++f->y < HEIGHT)
 	{
 		f->x = -1;
-		while (++f->x < WIDTH + f->move_x)
+		while (++f->x < WIDTH)
 		{
 			if (ft_strcmp_lower(f->set, "mandelbrot") == 0)
 				ft_draw_pixel(f, f->x, f->y, ft_color(mandelbrot(f), f));

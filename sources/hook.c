@@ -6,7 +6,7 @@
 /*   By: troudot <troudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 06:27:25 by troudot           #+#    #+#             */
-/*   Updated: 2023/02/18 04:57:09 by troudot          ###   ########.fr       */
+/*   Updated: 2023/02/19 15:47:30 by troudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,30 @@
 
 static void	ft_hook_config(int key, t_f *f)
 {
-	if (key == KEY_R)
+	if (key == KEY_ARROW_UP)
 	{
-		f->zoom = 1;
-		f->color_i = 1;
-		f->complex.x = f->save.x;
-		f->complex.y = f->save.y;
-		f->move_y = 0;
-		f->move_x = 0;
+		f->zoom *= 1.5;
+		if (f->max_iterations < 100)
+			f->max_iterations += 5;
+	}
+	if (key == KEY_ARROW_DOWN)
+	{
+		f->zoom /= 1.5;
+		if (f->max_iterations < 100)
+			f->max_iterations -= 5;
 	}
 }
 
 static void	ft_hook_move(int key, t_f *f)
 {
 	if (key == KEY_W)
-		f->move_y -= 10;
+		ft_move(f, 0.2, "up");
 	if (key == KEY_S)
-		f->move_y += 10;
+		ft_move(f, 0.2, "down");
 	if (key == KEY_D)
-		f->move_x -= 10;
+		ft_move(f, 0.2, "left");
 	if (key == KEY_A)
-		f->move_x += 10;
+		ft_move(f, 0.2, "right");
 	if (key == KEY_C)
 	{
 		if (f->color_i == 3)
@@ -63,12 +66,28 @@ static void	ft_hook_julia(int key, t_f *f)
 
 int	ft_mouse_pos(int button, int x, int y, t_f *f)
 {
-	(void)x;
-	(void)y;
 	if (button == 5)
+	{
 		f->zoom *= 1.5;
-	else if (button == 4 && f->zoom / 1.5 >= 1)
+		x -= WIDTH / 2;
+		y -= HEIGHT / 2;
+		if (x < 0)
+			ft_move(f, (double)x * -1 / WIDTH, "left");
+		else if (x > 0)
+			ft_move(f, (double)x / WIDTH, "right");
+		if (y < 0)
+			ft_move(f, (double)y * -1 / HEIGHT, "down");
+		else if (y > 0)
+			ft_move (f, (double)y / HEIGHT, "up");
+		if (f->max_iterations < 100)
+			f->max_iterations += 5;
+	}
+	else if (button == 4)
+	{
+		if (f->max_iterations < 100)
+			f->max_iterations -= 5;
 		f->zoom /= 1.5;
+	}
 	render(f);
 	return (0);
 }
@@ -87,7 +106,7 @@ int	ft_hook_key(int key, void *param)
 		&& (ft_strcmp_lower(f->set, "julia") == 0
 			|| ft_strcmp_lower(f->set, "multi_julia") == 0))
 		ft_hook_julia(key, f);
-	if (key == KEY_P || key == KEY_R || key == KEY_T || key == KEY_O)
+	if (key == KEY_ARROW_UP || key == KEY_ARROW_DOWN)
 		ft_hook_config(key, f);
 	render(f);
 	return (0);

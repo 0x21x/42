@@ -6,7 +6,7 @@
 /*   By: troudot <troudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 04:44:52 by troudot           #+#    #+#             */
-/*   Updated: 2023/02/18 04:49:38 by troudot          ###   ########.fr       */
+/*   Updated: 2023/02/19 15:28:54 by troudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,15 @@ typedef struct s_f
 	t_mlx		*mlx;
 	int			max_iterations;
 	double		zoom;
-	double		move_x;
-	double		move_y;
 	int			color_i;
 	double		x;
 	double		y;
 	char		*set;
 	t_number	complex;
-	t_number	save;
+	double		max_i;
+	double		min_i;
+	double		min_r;
+	double		max_r;
 }	t_f;
 
 int		mandelbrot(t_f *f);
@@ -67,7 +68,8 @@ void	render(t_f *f);
 int		ft_hook_key(int key, void *param);
 int		ft_mouse_pos(int button, int x, int y, t_f *f);
 int		ft_mouse_scroll(int button, int x, int y, void *param);
-void	init_x_y(t_f *f);
 void	ft_help(void);
+void	init_complex(t_f *f);
+void	ft_move(t_f *f, double move, char *dir);
 
 #endif

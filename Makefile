@@ -26,6 +26,7 @@ T 				=	1
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
 
 SRCS			=	main.c						render.c				hook.c						help.c					\
+					utils.c																									\
 																															\
 					factals/mandelbrot.c		factals/julia.c			factals/burningship.c								\
 																															\
