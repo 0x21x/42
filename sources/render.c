@@ -6,7 +6,7 @@
 /*   By: troudot <troudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 04:44:05 by troudot           #+#    #+#             */
-/*   Updated: 2023/02/19 15:48:34 by troudot          ###   ########.fr       */
+/*   Updated: 2023/02/19 16:46:13 by troudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	ft_menu(t_f *f)
 	mlx_string_put(f->mlx->mlx, f->mlx->win, 15, y += 20,
 		0xFFFFFF, "Move          : WASD");
 	mlx_string_put(f->mlx->mlx, f->mlx->win, 15, y += 20,
-		0xFFFFFF, "Reset         : R");
+		0xFFFFFF, "Color         : C");
 	if (ft_strcmp_lower(f->set, "julia") == 0)
 		mlx_string_put(f->mlx->mlx, f->mlx->win, 15, y += 20,
 			0xFFFFFF, "Change        : LEFT/RIGHT");

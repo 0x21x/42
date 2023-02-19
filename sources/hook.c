@@ -6,7 +6,7 @@
 /*   By: troudot <troudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 06:27:25 by troudot           #+#    #+#             */
-/*   Updated: 2023/02/19 15:47:30 by troudot          ###   ########.fr       */
+/*   Updated: 2023/02/19 17:05:37 by troudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,14 @@ int	ft_mouse_pos(int button, int x, int y, t_f *f)
 	if (button == 5)
 	{
 		f->zoom *= 1.5;
-		x -= WIDTH / 2;
-		y -= HEIGHT / 2;
-		if (x < 0)
-			ft_move(f, (double)x * -1 / WIDTH, "left");
-		else if (x > 0)
+		if (x - WIDTH / 2 < 0)
 			ft_move(f, (double)x / WIDTH, "right");
-		if (y < 0)
-			ft_move(f, (double)y * -1 / HEIGHT, "down");
-		else if (y > 0)
-			ft_move (f, (double)y / HEIGHT, "up");
+		else if (x - WIDTH / 2 > 0)
+			ft_move(f, (double)x * -1 / WIDTH, "left");
+		if (y - HEIGHT / 2 < 0)
+			ft_move(f, (double)y / HEIGHT, "up");
+		else if (y - HEIGHT / 2 > 0)
+			ft_move (f, (double)y * -1 / HEIGHT, "down");
 		if (f->max_iterations < 100)
 			f->max_iterations += 5;
 	}
