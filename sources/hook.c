@@ -6,7 +6,7 @@
 /*   By: troudot <troudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 06:27:25 by troudot           #+#    #+#             */
-/*   Updated: 2023/02/19 17:05:37 by troudot          ###   ########.fr       */
+/*   Updated: 2023/02/20 12:57:08 by troudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,9 @@
 static void	ft_hook_config(int key, t_f *f)
 {
 	if (key == KEY_ARROW_UP)
-	{
-		f->zoom *= 1.5;
-		if (f->max_iterations < 100)
-			f->max_iterations += 5;
-	}
+		ft_zoom(f, 0.5);
 	if (key == KEY_ARROW_DOWN)
-	{
-		f->zoom /= 1.5;
-		if (f->max_iterations < 100)
-			f->max_iterations -= 5;
-	}
+		ft_zoom(f, 2);
 }
 
 static void	ft_hook_move(int key, t_f *f)
@@ -66,26 +58,22 @@ static void	ft_hook_julia(int key, t_f *f)
 
 int	ft_mouse_pos(int button, int x, int y, t_f *f)
 {
+	x -= WIDTH / 2;
+	y -= HEIGHT / 2;
 	if (button == 5)
 	{
-		f->zoom *= 1.5;
-		if (x - WIDTH / 2 < 0)
+		ft_zoom(f, 0.5);
+		if (x < 0)
 			ft_move(f, (double)x / WIDTH, "right");
-		else if (x - WIDTH / 2 > 0)
+		else if (x > 0)
 			ft_move(f, (double)x * -1 / WIDTH, "left");
-		if (y - HEIGHT / 2 < 0)
+		if (y < 0)
 			ft_move(f, (double)y / HEIGHT, "up");
-		else if (y - HEIGHT / 2 > 0)
+		else if (y > 0)
 			ft_move (f, (double)y * -1 / HEIGHT, "down");
-		if (f->max_iterations < 100)
-			f->max_iterations += 5;
 	}
 	else if (button == 4)
-	{
-		if (f->max_iterations < 100)
-			f->max_iterations -= 5;
-		f->zoom /= 1.5;
-	}
+		ft_zoom(f, 2);
 	render(f);
 	return (0);
 }

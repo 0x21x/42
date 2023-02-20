@@ -6,7 +6,7 @@
 /*   By: troudot <troudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 04:44:52 by troudot           #+#    #+#             */
-/*   Updated: 2023/02/19 15:28:54 by troudot          ###   ########.fr       */
+/*   Updated: 2023/02/20 12:53:02 by troudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ int		ft_mouse_scroll(int button, int x, int y, void *param);
 void	ft_help(void);
 void	init_complex(t_f *f);
 void	ft_move(t_f *f, double move, char *dir);
+void	ft_zoom(t_f *f, double zoom);
 
 #endif

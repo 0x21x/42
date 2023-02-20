@@ -6,7 +6,7 @@
 /*   By: troudot <troudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:22:47 by troudot           #+#    #+#             */
-/*   Updated: 2023/02/19 15:48:02 by troudot          ###   ########.fr       */
+/*   Updated: 2023/02/20 12:50:32 by troudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int argc, char **argv)
 		exit(2);
 	f->zoom = 1;
 	f->color_i = 1;
-	f->max_iterations = 10;
+	f->max_iterations = 100;
 	if (argc > 1)
 	{
 		argc -= 1;
