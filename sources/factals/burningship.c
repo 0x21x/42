@@ -6,7 +6,7 @@
 /*   By: troudot <troudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 02:07:36 by troudot           #+#    #+#             */
-/*   Updated: 2023/02/19 15:48:17 by troudot          ###   ########.fr       */
+/*   Updated: 2023/02/20 13:34:58 by troudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ int	burningship(t_f *f)
 	int			i;
 
 	i = -1;
-	number.x = (f->min_r + f->x * (f->max_r - (f->min_r)) / WIDTH) / f->zoom;
-	number.y = (f->max_i + f->y * (f->min_i - f->max_i) / HEIGHT) / f->zoom;
+	number.x = (f->min_r + f->x * (f->max_r - (f->min_r)) / WIDTH);
+	number.y = (f->max_i + f->y * (f->min_i - f->max_i) / HEIGHT);
 	f->complex.x = number.x;
 	f->complex.y = number.y;
 	while (++i < f->max_iterations)
 	{
-		if (((pow(number.y, 2.0) + pow(number.x, 2.0))) > 4)
+		if ((number.y * number.y + number.x * number.x) > 4)
 			break ;
 		number.x = fabs(number.x);
 		number.y = fabs(number.y);
 		temp = 2.0 * number.x * number.y + f->complex.y;
-		number.x = pow(number.x, 2.0) - pow(number.y, 2.0) + f->complex.x;
+		number.x = number.x * number.x - number.y * number.y + f->complex.x;
 		number.y = temp;
 	}
 	return (i);
