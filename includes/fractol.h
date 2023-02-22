@@ -6,7 +6,7 @@
 /*   By: troudot <troudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 04:44:52 by troudot           #+#    #+#             */
-/*   Updated: 2023/02/20 12:53:02 by troudot          ###   ########.fr       */
+/*   Updated: 2023/02/21 02:27:39 by troudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_f
 {
 	t_mlx		*mlx;
 	int			max_iterations;
-	double		zoom;
 	int			color_i;
 	double		x;
 	double		y;

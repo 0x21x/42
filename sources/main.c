@@ -6,7 +6,7 @@
 /*   By: troudot <troudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:22:47 by troudot           #+#    #+#             */
-/*   Updated: 2023/02/20 12:50:32 by troudot          ###   ########.fr       */
+/*   Updated: 2023/02/21 23:38:25 by troudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int	main(int argc, char **argv)
 	f->mlx = (t_mlx *) malloc(sizeof(t_mlx));
 	if (!f->mlx)
 		exit(2);
-	f->zoom = 1;
 	f->color_i = 1;
 	f->max_iterations = 100;
 	if (argc > 1)
