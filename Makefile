@@ -2,14 +2,16 @@
 #				Vars                                                                                                        #
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
 
-NAME			=	minitalk
-PRINT_NAME		=	minitalk
+CLIENT			:= client
+SERVER			:= server
+NAME			:= minitalk
+PRINT_NAME		:= minitalk
 
-SERVER_DIR		= ./sources/server
-CLIENT_DIR		= ./sources/client
+SERVER_DIR		:= ./sources/server
+CLIENT_DIR		:= ./sources/client
 
-PRINT_PREFIX	=	\033[1m\033[38;5;240m[\033[0m\033[38;5;250m$(PRINT_NAME)\033[1m\033[38;5;240m] \033[38;5;105m~\033[0m
-T 				=	1
+PRINT_PREFIX	:=	\033[1m\033[38;5;240m[\033[0m\033[38;5;250m$(PRINT_NAME)\033[1m\033[38;5;240m] \033[38;5;105m~\033[0m
+T 				:=	1
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
 #				Rules					2																					#
@@ -19,21 +21,29 @@ all:			 title $(NAME)
 	@:
 	@echo "$(PRINT_PREFIX)\033[0;38;5;190m Done !\033[0m\n"
 
-$(NAME):
-	@echo "$(PRINT_PREFIX) Compiling \033[0;33mSources\033[0m\n"
+$(CLIENT):
 	@make -C $(CLIENT_DIR)
-	@make -C $(SERVER_DIR)
 	@mv $(CLIENT_DIR)/client client
+
+$(SERVER):
+	@make -C $(SERVER_DIR)
 	@mv $(SERVER_DIR)/server server
+
+$(NAME): $(CLIENT) $(SERVER)
+	@echo "$(PRINT_PREFIX) Compiling \033[0;33mSources\033[0m\n"
+
+bonus: $(NAME)
 
 clean:			title
 	@echo "$(PRINT_PREFIX)\033[0;38;5;226m Cleaning \033[0m\n"
 	@rm -rf server
 	@rm -rf client
 
-re: 			clean all
+fclean: clean
 
-.PHONY:			all
+re: 			fclean all
+
+.PHONY:		all
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
 #				Style                                                                                                       #

@@ -6,7 +6,7 @@
 /*   By: troudot <troudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:49:42 by troudot           #+#    #+#             */
-/*   Updated: 2023/02/27 03:26:29 by troudot          ###   ########.fr       */
+/*   Updated: 2023/02/27 05:29:49 by troudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,16 @@ void	ft_send_char(int pid, unsigned char c)
 {
 	int	bit;
 
-	bit = 0;
+	bit = -1;
 	if (!pid || !c)
 		exit(0);
-	while (bit <= 8)
+	while (++bit <= 8)
 	{
 		if (c & 1 << bit)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
 		usleep(85);
-		++bit;
 	}
 }
 

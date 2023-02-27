@@ -31,14 +31,6 @@ $(NAME):
 	@$(foreach s,$(SRCS),echo "$(PRINT_PREFIX) Compiling \033[0;33m$(s)\033[0m";)
 	@$(CC) $(CFLAGS) $(addprefix , $(SRCS)) -I $(INCLUDES_DIR) -o $(NAME)
 
-clean:			title
-	@rm -f $(NAME)
-	@echo "$(PRINT_PREFIX)\033[0;38;5;226m Cleaning \033[0m\n"
-
-re: 			fclean all
-
-bonus:			all
-
 .PHONY:			all
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #
