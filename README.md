@@ -11,4 +11,4 @@
 
 >  [**Fract-ol**](https://github.com/Tim-rdt/42/tree/fract-ol)  <img  height="25"  align="right" src="https://img.shields.io/badge/-125%25-blue?style=flat-square"/><img  height="25"  align="right" src="https://raw.githubusercontent.com/Tim-rdt/42/main/stuff/star3.png"/>
 
->  [**Minitalk**](https://github.com/Tim-rdt/42/tree/minitalk)
+>  [**Minitalk**](https://github.com/Tim-rdt/42/tree/minitalk) <img  height="25"  align="right" src="https://img.shields.io/badge/-115%25-blue?style=flat-square"/>
