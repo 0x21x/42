@@ -17,4 +17,3 @@
 >  [**Philosophers**](https://github.com/Tim-rdt/42/tree/philosophers)  <img  height="25"  align="right" src="https://img.shields.io/badge/-100%25-blue?style=flat-square"/>
 
 >  [**Minishell**](https://github.com/Tim-rdt/42/tree/minishell)  <img  height="25"  align="right" src="https://img.shields.io/badge/-110%25-blue?style=flat-square"/>
-## url = https://github.com/Torantulino/Auto-GPT
