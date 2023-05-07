@@ -22,3 +22,5 @@
 >  [**Cub3d**](https://github.com/Tim-rdt/42/tree/cub3d)  <img  height="25"  align="right" src="https://img.shields.io/badge/-125%25-blue?style=flat-square"/>
 
 >  [**CPP04**](https://github.com/Tim-rdt/42/tree/CPP)  <img  height="25"  align="right" src="https://img.shields.io/badge/-100%25-blue?style=flat-square"/>
+
+>  **NetPrctice**  <img  height="25"  align="right" src="https://img.shields.io/badge/-100%25-blue?style=flat-square"/>
