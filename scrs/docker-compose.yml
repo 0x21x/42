@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    build: requirements/nginx/
+    container_name: nginx
+    environment:
+      - HOSTNAME=${HOSTNAME}
+    networks:
+      - inception
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress:/var/www/wordpress
+    restart: always
+
+  mariadb:
+    image: mariadb:latest
+    build: requirements/mariadb/
+    container_name: mariadb
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3036:3036"
+    volumes:
+      - mariadb:/var/lib/mysql
+    restart: always
+
+  # wordpress:
+  #   image: wordpress:latest
+  #   build: requirements/wordpress/
+  #   container_name: wordpress
+  #   environment:
+  #     - WORDPRESS_DB_HOST=${MYSQL_HOST}
+  #     - WORDPRESS_DB_USER=${MYSQL_USER}
+  #     - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
+  #     - WORDPRESS_DB_NAME=${MYSQL_DATABASE}
+  #     - WORDPRESS_VOLUME=${WORDPRESS_VOLUME}
+  #   ports:
+  #     - "9000"
+  #   volumes:
+  #     - wordpress:/var/www/wordpress
+  #   depends_on:
+  #     - mariadb
+  #   restart: always
+
+volumes:
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${WORDPRESS_VOLUME}
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${MARIADB_VOLUME}
+
+networks:
+  inception:
+    name: inception
+    driver: bridge
