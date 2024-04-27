@@ -1,0 +1,88 @@
+version: '3.8'
+
+name: inception
+
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: ./requirements/nginx/Dockerfile
+    ports:
+      - "443:443"
+    volumes_from:
+      - wordpress
+    depends_on:
+      wordpress:
+        condition: service_started
+    environment:
+      HOSTNAME:             ${HOSTNAME}
+    restart: always
+    networks:
+      - inception
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress/
+    volumes:
+      - wordpress:/var/www/html
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      HOSTNAME:             ${HOSTNAME}
+      MYSQL_DATABASE:       ${MYSQL_DATABASE}
+      MYSQL_USER:           ${MYSQL_USER}
+      MYSQL_PASSWORD:       ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD:  ${MYSQL_ROOT_PASSWORD}
+      WP_ROOT_USER:         ${WP_ROOT_USER}
+      WP_ROOT_PASSWORD:     ${WP_ROOT_PASSWORD}
+      WP_ROOT_MAIL:         ${WP_ROOT_MAIL}
+      WP_USER:              ${WP_USER}
+      WP_USER_PASSWORD:     ${WP_USER_PASSWORD}
+      WP_USER_MAIL:         ${WP_USER_MAIL}
+    restart: always
+    networks:
+      - inception
+
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb/
+    volumes:
+      - "mariadb:/var/lib/mysql"
+    environment:
+      MYSQL_DATABASE:       ${MYSQL_DATABASE}
+      MYSQL_USER:           ${MYSQL_USER}
+      MYSQL_PASSWORD:       ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD:  ${MYSQL_ROOT_PASSWORD}
+    restart: always
+    healthcheck:
+      test: mariadb-admin ping --silent
+    networks:
+      - inception
+    expose:
+      - "3306"
+
+
+volumes:
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${WORDPRESS_VOLUME}
+
+  mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${MARIADB_VOLUME}
+
+
+networks:
+  inception:
+    name: inception
+    driver: bridge
